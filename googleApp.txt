@@ -1,0 +1,26 @@
+app.yaml
+application: your-app-identifier
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+handlers:
+- url: /.*
+script: helloworld.app
+
+helloworld.py
+import webapp2
+class MainPage(webapp2.RequestHandler):def get(self):
+self.response.headers['Content-Type'] = 'text/plain'
+self.response.write('Hello, World!')
+app = webapp2.WSGIApplication([
+('/', MainPage),
+], debug=True)
+python "C:\Program Files (x86)\Google\google_appengine\dev_appserver.py" c:\googleApp\zhen-udc-001 --port=5000
+python "C:\Program Files (x86)\Google\google_appengine\appcfg.py" update c:\googleApp\zhen-udc-001
+
+http://localhost:8080/
+cd google_appengine
+fuser -k 8080/tcp
+python ~/google_appengine/dev_appserver.py ~/googleApp/zhen-udc-001/
+
